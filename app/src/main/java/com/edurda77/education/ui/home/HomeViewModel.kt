@@ -1,13 +1,61 @@
 package com.edurda77.education.ui.home
 
-import androidx.lifecycle.LiveData
+import android.os.CountDownTimer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.edurda77.education.entity.StructureForShowHome
+import com.edurda77.education.repositories.Repository
+import com.edurda77.education.utils.END_DATE
+import com.edurda77.education.utils.FORMAT_DATE
+import dagger.hilt.android.lifecycle.HiltViewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(): ViewModel() {
+    private val _showData= MutableLiveData<StructureForShowHome>()
+    val showData = _showData
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    /*init {
+        printDifferenceDateForHours()
+    }*/
+
+
+    fun printDifferenceDateForHours() {
+
+        val currentTime = Calendar.getInstance().time
+        val endDateDay = END_DATE
+        val format1 = SimpleDateFormat(FORMAT_DATE, Locale.getDefault())
+        val endDate = format1.parse(endDateDay)
+        val different = endDate.time - currentTime.time
+        object : CountDownTimer(different, 1000) {
+
+
+            override fun onTick(millisUntilFinished: Long) {
+                var diff = millisUntilFinished
+                val secondsInMilli: Long = 1000
+                val minutesInMilli = secondsInMilli * 60
+                val hoursInMilli = minutesInMilli * 60
+                val daysInMilli = hoursInMilli * 24
+
+                val elapsedDays = diff / daysInMilli
+                diff %= daysInMilli
+
+                val elapsedHours = diff / hoursInMilli
+                diff %= hoursInMilli
+
+                val elapsedMinutes = diff / minutesInMilli
+                diff %= minutesInMilli
+
+
+                _showData.postValue( StructureForShowHome("${elapsedDays}:${elapsedHours}:${elapsedMinutes}"))
+            }
+
+            override fun onFinish() {
+                _showData.postValue( StructureForShowHome("Конец тримместра!"))
+            }
+        }.start()
     }
-    val text: LiveData<String> = _text
+
 }
