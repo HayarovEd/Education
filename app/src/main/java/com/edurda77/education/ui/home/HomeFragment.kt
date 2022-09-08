@@ -10,8 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edurda77.education.databinding.FragmentHomeBinding
+import com.edurda77.education.entity.HomeWork
 import com.edurda77.education.entity.Work
-import com.edurda77.education.repositories.Repository.addLessons
+import com.edurda77.education.repositories.Repository.addHomeWork
+import com.edurda77.education.repositories.Repository.addWork
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 
@@ -44,8 +46,18 @@ class HomeFragment : Fragment() {
         viewModel.showData.observe(viewLifecycleOwner) {
             binding.timerData.count.text = it.countDownData
         }
-        binding.classesToday.text = "Сегодня ${addLessons().size} дел"
-        initRecyclerView(addLessons())
+        binding.classesToday.text = "Сегодня ${addWork().size} дел"
+        initRecyclerView(addWork())
+        initRecyclerView2(addHomeWork())
+    }
+
+    private fun initRecyclerView2(homeWork: List<HomeWork>) {
+        val recyclerView: RecyclerView = binding.rvHomeWork
+        recyclerView.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL, false
+        )
+        recyclerView.adapter = HomeWorkAdapter(homeWork)
     }
 
     private fun initRecyclerView(work: List<Work>) {
