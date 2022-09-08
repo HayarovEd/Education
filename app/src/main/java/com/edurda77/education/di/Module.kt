@@ -11,7 +11,4 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DiModule {
 
-    @Provides
-    @Singleton
-    fun provideData() : Repository = Repository()
 }

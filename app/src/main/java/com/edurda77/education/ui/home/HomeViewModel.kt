@@ -1,10 +1,9 @@
 package com.edurda77.education.ui.home
 
 import android.os.CountDownTimer
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.edurda77.education.entity.AllData
+import com.edurda77.education.entity.StructureForShowHome
 import com.edurda77.education.repositories.Repository
 import com.edurda77.education.utils.END_DATE
 import com.edurda77.education.utils.FORMAT_DATE
@@ -14,14 +13,16 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: Repository): ViewModel() {
-    private val _showData= MutableLiveData<AllData>()
+class HomeViewModel @Inject constructor(): ViewModel() {
+    private val _showData= MutableLiveData<StructureForShowHome>()
     val showData = _showData
 
-    init {
+    /*init {
         printDifferenceDateForHours()
-    }
-    private fun printDifferenceDateForHours() {
+    }*/
+
+
+    fun printDifferenceDateForHours() {
 
         val currentTime = Calendar.getInstance().time
         val endDateDay = END_DATE
@@ -48,11 +49,11 @@ class HomeViewModel @Inject constructor(private val repository: Repository): Vie
                 diff %= minutesInMilli
 
 
-                _showData.postValue( AllData("${elapsedDays}:${elapsedHours}:${elapsedMinutes}"))
+                _showData.postValue( StructureForShowHome("${elapsedDays}:${elapsedHours}:${elapsedMinutes}"))
             }
 
             override fun onFinish() {
-                _showData.postValue( AllData("Конец тримместра!"))
+                _showData.postValue( StructureForShowHome("Конец тримместра!"))
             }
         }.start()
     }

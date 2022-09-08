@@ -3,5 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="end_to_sim">До конца симместра осталось</string>
+    <string name="end_to_sim">До нового года осталось</string>
 </resources>

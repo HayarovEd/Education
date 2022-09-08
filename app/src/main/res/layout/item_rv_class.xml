@@ -1,6 +1,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="8dp"
@@ -9,20 +10,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/image_lesson"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginStart="16dp"
+            android:scaleType="fitCenter"
             android:background="@drawable/image_oval"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="icon" />
 
         <TextView
             android:id="@+id/name_lesson"
@@ -31,6 +34,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="Предмет"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/time_lesson"
             app:layout_constraintStart_toEndOf="@id/image_lesson"/>
@@ -42,6 +46,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="8.00-8.45"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/name_lesson"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_lesson"/>
@@ -49,12 +54,19 @@
         <Button
             android:id="@+id/go_to_lesson"
             android:layout_width="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_height="match_parent"
+            android:layout_height="88dp"
             android:background="@drawable/rect_button"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

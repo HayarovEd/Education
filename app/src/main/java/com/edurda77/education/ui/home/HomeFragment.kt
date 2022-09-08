@@ -1,12 +1,17 @@
 package com.edurda77.education.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.edurda77.education.databinding.FragmentHomeBinding
+import com.edurda77.education.entity.Work
+import com.edurda77.education.repositories.Repository.addLessons
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 
@@ -32,12 +37,28 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.printDifferenceDateForHours()
         viewModel.showData.observe(viewLifecycleOwner) {
             binding.timerData.count.text = it.countDownData
         }
+        binding.classesToday.text = "Сегодня ${addLessons().size} дел"
+        initRecyclerView(addLessons())
     }
 
+    private fun initRecyclerView(work: List<Work>) {
+        val recyclerView: RecyclerView = binding.rvClasses
+        recyclerView.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL, false
+        )
+        recyclerView.adapter = WorkAdapter(work)
+
+        val position = work.indexOfFirst { it.isEnableUrl==true }
+        (recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(position)
+
+    }
 
 }
