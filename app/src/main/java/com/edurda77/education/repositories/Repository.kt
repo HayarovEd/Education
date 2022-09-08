@@ -8,13 +8,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object Repository {
-    private val currentWork = mutableListOf<Work>()
-    private val currentHomeWork = mutableListOf<HomeWork>()
+
 
 
 
     fun addWork(): List<Work> {
-
+        val currentWork = mutableListOf<Work>()
         currentWork.add(
             Work(
                 picture = R.drawable.ic_stand_up,
@@ -22,6 +21,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 06:45:00",
                 dateEndWork = "08/09/2022 07:00:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 06:45:00", "08/09/2022 07:00:00"),
             )
         )
@@ -32,6 +32,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 07:01:00",
                 dateEndWork = "08/09/2022 08:00:00",
                 urlZoom = "",
+                isEat = true,
                 isEnableUrl = diffToTime("08/09/2022 07:01:00", "08/09/2022 08:00:00"),
             )
         )
@@ -42,6 +43,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 08:01:00",
                 dateEndWork = "08/09/2022 09:00:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 08:01:00", "08/09/2022 09:00:00"),
             )
         )
@@ -52,6 +54,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 09:01:00",
                 dateEndWork = "08/09/2022 13:00:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 09:01:00", "08/09/2022 13:00:00"),
             )
         )
@@ -62,6 +65,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 13:01:00",
                 dateEndWork = "08/09/2022 13:45:00",
                 urlZoom = "",
+                isEat = true,
                 isEnableUrl = diffToTime("08/09/2022 13:01:00", "08/09/2022 13:45:00"),
             )
         )
@@ -72,6 +76,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 13:46:00",
                 dateEndWork = "08/09/2022 18:00:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 13:46:00", "08/09/2022 18:00:00"),
             )
         )
@@ -82,6 +87,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 18:01:00",
                 dateEndWork = "08/09/2022 19:00:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 18:01:00", "08/09/2022 19:00:00"),
             )
         )
@@ -92,6 +98,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 19:01:00",
                 dateEndWork = "08/09/2022 19:30:00",
                 urlZoom = "",
+                isEat = true,
                 isEnableUrl = diffToTime("08/09/2022 19:01:00", "08/09/2022 19:30:00"),
             )
         )
@@ -102,6 +109,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 19:31:00",
                 dateEndWork = "08/09/2022 22:30:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 19:31:00", "08/09/2022 22:30:00"),
             )
         )
@@ -112,6 +120,7 @@ object Repository {
                 dateBeginWork = "08/09/2022 22:31:00",
                 dateEndWork = "08/09/2022 06:44:00",
                 urlZoom = "",
+                isEat = false,
                 isEnableUrl = diffToTime("08/09/2022 22:31:00", "08/09/2022 06:44:00"),
             )
         )
@@ -119,6 +128,7 @@ object Repository {
     }
 
     fun addHomeWork(): List<HomeWork> {
+        val currentHomeWork = mutableListOf<HomeWork>()
         currentHomeWork.add(
             HomeWork(
                 picture = R.drawable.ic_comp,

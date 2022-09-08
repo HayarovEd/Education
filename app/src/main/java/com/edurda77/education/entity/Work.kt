@@ -6,5 +6,6 @@ data class Work(
     val dateBeginWork : String,
     val dateEndWork : String,
     val urlZoom : String? = "",
+    val isEat: Boolean? = false,
     val isEnableUrl: Boolean? = false
 )
